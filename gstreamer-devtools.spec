@@ -1,23 +1,25 @@
+# TODO: package debug-viewer?
 #
 # Conditional build:
 %bcond_without	apidocs	# API documentation
 
-%define		gst_ver		1.18.5
-%define		gstpb_ver	1.18.5
+%define		gstmver		1.0
+%define		gst_ver		1.20.0
+%define		gstpb_ver	1.20.0
 %define		gstrtsp_ver	%{gst_ver}
 Summary:	GStreamer development and validation tools
 Summary(pl.UTF-8):	Narzędzia programistyczne i sprawdzające do GStreamera
 Name:		gstreamer-devtools
-Version:	1.18.5
+Version:	1.20.1
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://gstreamer.freedesktop.org/src/gst-devtools/gst-devtools-%{version}.tar.xz
-# Source0-md5:	12656dc06805c4de8e3ee48d80545785
+# Source0-md5:	2fe85133cf604e71f4d30f8a0bbc6d47
 URL:		https://gstreamer.freedesktop.org/
 BuildRequires:	cairo-devel
 BuildRequires:	gettext-devel >= 0.17
-BuildRequires:	glib2-devel >= 1:2.44.0
+BuildRequires:	glib2-devel >= 1:2.56.0
 BuildRequires:	gobject-introspection-devel >= 0.6.3
 BuildRequires:	gstreamer-devel >= %{gst_ver}
 BuildRequires:	gstreamer-plugins-base-devel >= %{gstpb_ver}
@@ -25,7 +27,7 @@ BuildRequires:	gstreamer-rtsp-server-devel >= %{gstrtsp_ver}
 BuildRequires:	gtk+3-devel >= 3.0
 %{?with_apidocs:BuildRequires:	hotdoc}
 BuildRequires:	json-glib-devel >= 1.0
-BuildRequires:	meson >= 0.48
+BuildRequires:	meson >= 0.59
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python3 >= 1:3.4
@@ -63,7 +65,7 @@ Dokumentacja API biblioteki GstValidate.
 Summary:	GstValidate - suite of tools to run GStreamer integration tests
 Summary(pl.UTF-8):	GstValidate - zestaw narzędzi do uruchamiania testów integracyjnych GStreamera
 Group:		Libraries
-Requires:	glib2 >= 1:2.44.0
+Requires:	glib2 >= 1:2.56.0
 Requires:	gstreamer >= %{gst_ver}
 Requires:	gstreamer-plugins-base >= %{gstpb_ver}
 Requires:	gstreamer-rtsp-server >= %{gstrtsp_ver}
@@ -89,7 +91,7 @@ sposób zgodny z oczekiwaniami.
 Summary:	Header files for GstValidate library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GstValidate
 Group:		Development/Libraries
-Requires:	glib2-devel >= 1:2.44.0
+Requires:	glib2-devel >= 1:2.56.0
 Requires:	gstreamer-devel >= %{gst_ver}
 Requires:	gstreamer-plugins-base-devel >= %{gstpb_ver}
 Requires:	gstreamer-validate = %{version}-%{release}
