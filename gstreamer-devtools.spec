@@ -4,30 +4,32 @@
 %bcond_without	apidocs	# API documentation
 
 %define		gstmver		1.0
-%define		gst_ver		1.22.0
-%define		gstpb_ver	1.22.0
+%define		gst_ver		1.24.0
+%define		gstpb_ver	1.24.0
+%define		gstpd_ver	1.24.0
 %define		gstrtsp_ver	%{gst_ver}
 Summary:	GStreamer development and validation tools
 Summary(pl.UTF-8):	Narzędzia programistyczne i sprawdzające do GStreamera
 Name:		gstreamer-devtools
-Version:	1.22.6
+Version:	1.24.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://gstreamer.freedesktop.org/src/gst-devtools/gst-devtools-%{version}.tar.xz
-# Source0-md5:	8b24d2872dcf261bdc5a3c86408d6578
+# Source0-md5:	ac1d4ddf3b905370f5cf43f430b2365b
 URL:		https://gstreamer.freedesktop.org/
 BuildRequires:	cairo-devel
 BuildRequires:	gettext-devel >= 0.17
-BuildRequires:	glib2-devel >= 1:2.62.0
+BuildRequires:	glib2-devel >= 1:2.64.0
 BuildRequires:	gobject-introspection-devel >= 0.6.3
 BuildRequires:	gstreamer-devel >= %{gst_ver}
 BuildRequires:	gstreamer-plugins-base-devel >= %{gstpb_ver}
 BuildRequires:	gstreamer-rtsp-server-devel >= %{gstrtsp_ver}
+BuildRequires:	gstreamer-transcoder-devel >= %{gstpd_ver}
 BuildRequires:	gtk+3-devel >= 3.0
 %{?with_apidocs:BuildRequires:	hotdoc}
 BuildRequires:	json-glib-devel >= 1.0
-BuildRequires:	meson >= 0.62
+BuildRequires:	meson >= 1.1
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python3 >= 1:3.4
@@ -65,10 +67,11 @@ Dokumentacja API biblioteki GstValidate.
 Summary:	GstValidate - suite of tools to run GStreamer integration tests
 Summary(pl.UTF-8):	GstValidate - zestaw narzędzi do uruchamiania testów integracyjnych GStreamera
 Group:		Libraries
-Requires:	glib2 >= 1:2.62.0
+Requires:	glib2 >= 1:2.64.0
 Requires:	gstreamer >= %{gst_ver}
 Requires:	gstreamer-plugins-base >= %{gstpb_ver}
 Requires:	gstreamer-rtsp-server >= %{gstrtsp_ver}
+Requires:	gstreamer-transcoder >= %{gstpd_ver}
 Requires:	json-glib >= 1.0
 Requires:	python3-modules >= 1:3.4
 
@@ -91,7 +94,7 @@ sposób zgodny z oczekiwaniami.
 Summary:	Header files for GstValidate library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GstValidate
 Group:		Development/Libraries
-Requires:	glib2-devel >= 1:2.62.0
+Requires:	glib2-devel >= 1:2.64.0
 Requires:	gstreamer-devel >= %{gst_ver}
 Requires:	gstreamer-plugins-base-devel >= %{gstpb_ver}
 Requires:	gstreamer-validate = %{version}-%{release}
