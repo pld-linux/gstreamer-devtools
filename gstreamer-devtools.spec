@@ -11,12 +11,12 @@
 Summary:	GStreamer development and validation tools
 Summary(pl.UTF-8):	Narzędzia programistyczne i sprawdzające do GStreamera
 Name:		gstreamer-devtools
-Version:	1.24.4
+Version:	1.24.7
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://gstreamer.freedesktop.org/src/gst-devtools/gst-devtools-%{version}.tar.xz
-# Source0-md5:	480f1c032682f9ce16fc92307bcd2de6
+# Source0-md5:	28e433f23c570445e75d66b7beccd326
 URL:		https://gstreamer.freedesktop.org/
 BuildRequires:	cairo-devel
 BuildRequires:	gettext-devel >= 0.17
