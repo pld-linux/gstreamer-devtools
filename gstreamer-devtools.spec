@@ -11,12 +11,12 @@
 Summary:	GStreamer development and validation tools
 Summary(pl.UTF-8):	Narzędzia programistyczne i sprawdzające do GStreamera
 Name:		gstreamer-devtools
-Version:	1.24.8
+Version:	1.24.12
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://gstreamer.freedesktop.org/src/gst-devtools/gst-devtools-%{version}.tar.xz
-# Source0-md5:	12c579fb4075df61983e95caaa2d01b7
+# Source0-md5:	52be72adda2331d2abeaab99b9b52f01
 URL:		https://gstreamer.freedesktop.org/
 BuildRequires:	cairo-devel
 BuildRequires:	gettext-devel >= 0.17
@@ -34,6 +34,7 @@ BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python3 >= 1:3.4
 BuildRequires:	rpm-build >= 4.6
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -111,11 +112,11 @@ Pliki nagłówkowe biblioteki GstValidate.
 %{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' validate/tools/gst-validate-launcher.in
 
 %build
-%meson build \
+%meson \
 	--default-library=shared \
 	%{!?with_apidocs:-Ddoc=false}
 
-%ninja_build -C build
+%meson_build
 
 %if %{with apidocs}
 cd build/docs
@@ -125,7 +126,7 @@ LC_ALL=C.UTF-8 hotdoc run --conf-file gst-devtools-doc.json
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 %if %{with apidocs}
 install -d $RPM_BUILD_ROOT%{_docdir}/gstreamer-%{gstmver}
