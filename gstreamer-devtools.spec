@@ -1,8 +1,7 @@
-# TODO: package debug-viewer?
 #
 # Conditional build:
 %bcond_without	apidocs	# API documentation
-%bcond_with	rust	# Rust based gst-dots-viewer (TODO: vendor crates)
+%bcond_without	rust	# Rust based gst-dots-viewer
 
 %define		gstmver		1.0
 %define		gst_ver		1.26.0
@@ -18,6 +17,12 @@ License:	LGPL v2.1+, GPL v3+ (debug-viewer), MPL v2.0 (dot-viewer)
 Group:		Libraries
 Source0:	https://gstreamer.freedesktop.org/src/gst-devtools/gst-devtools-%{version}.tar.xz
 # Source0-md5:	a99f8fcd8ff7ea239c303423e0894e37
+# cd gst-devtools-%{version}/dots-viewer
+# cargo vendor-filterer --platform='*-unknown-linux-*' --tier=2
+# cd ../..
+# tar cJf gst-devtools-%{version}-vendor.tar.xz gst-devtools-%{version}/dots-viewer/vendor
+Source1:	gst-devtools-%{version}-vendor.tar.xz
+# Source1-md5:	07238aa1f4f12c4a64afb479ee485eb5
 URL:		https://gstreamer.freedesktop.org/
 BuildRequires:	cairo-devel
 BuildRequires:	gettext-devel >= 0.17
@@ -143,14 +148,29 @@ GStremera "*.dot" i serwujący je jako strony WWW, dzięki czemu można
 je łatwo przeglądać. Więcej informacji w `gst-dots-viewer --help`.
 
 %prep
-%setup -q -n gst-devtools-%{version}
+%setup -q -n gst-devtools-%{version} -b1
 
 %{__sed} -i -e '1s,/usr/bin/env python3,%{__python3},' \
 	debug-viewer/gst-debug-viewer \
 	validate/launcher/RangeHTTPServer.py \
 	validate/tools/gst-validate-launcher.in
 
+# use offline registry
+CARGO_HOME="$(pwd)/.cargo"
+
+mkdir -p "$CARGO_HOME"
+cat >$CARGO_HOME/config.toml <<EOF
+[source.crates-io]
+replace-with = 'vendored-sources'
+
+[source.vendored-sources]
+directory = '$PWD/dots-viewer/vendor'
+EOF
+
 %build
+%ifarch x32
+export PKG_CONFIG_ALLOW_CROSS=1
+%endif
 %meson \
 	--default-library=shared \
 	-Dcairo=enabled \
@@ -175,6 +195,9 @@ LC_ALL=C.UTF-8 hotdoc run --conf-file gst-devtools-doc.json
 %install
 rm -rf $RPM_BUILD_ROOT
 
+%ifarch x32
+export PKG_CONFIG_ALLOW_CROSS=1
+%endif
 %meson_install
 
 %py3_comp $RPM_BUILD_ROOT%{_libdir}/gst-validate-launcher/python
