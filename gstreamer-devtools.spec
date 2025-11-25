@@ -40,7 +40,7 @@ BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python3 >= 1:3.4
 BuildRequires:	rpm-build >= 4.6
-BuildRequires:	rpmbuild(macros) >= 2.042
+BuildRequires:	rpmbuild(macros) >= 2.050
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -136,6 +136,7 @@ GStreamera.
 Summary:	GStreamer dot files viewer
 Summary(pl.UTF-8):	Przeglądarka plików dot GStreamera
 License:	MPL v2.0
+%{?rust_req}
 
 %description -n gstreamer-dots-viewer
 Simple HTTP server that watches a directory for GStreamer "*.dot"
