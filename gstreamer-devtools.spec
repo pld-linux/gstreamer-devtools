@@ -11,18 +11,18 @@
 Summary:	GStreamer development and validation tools
 Summary(pl.UTF-8):	Narzędzia programistyczne i sprawdzające do GStreamera
 Name:		gstreamer-devtools
-Version:	1.26.0
+Version:	1.26.8
 Release:	1
 License:	LGPL v2.1+, GPL v3+ (debug-viewer), MPL v2.0 (dot-viewer)
 Group:		Libraries
 Source0:	https://gstreamer.freedesktop.org/src/gst-devtools/gst-devtools-%{version}.tar.xz
-# Source0-md5:	a99f8fcd8ff7ea239c303423e0894e37
+# Source0-md5:	6576761d3e6b8373e554a95b31bca598
 # cd gst-devtools-%{version}/dots-viewer
 # cargo vendor-filterer --platform='*-unknown-linux-*' --tier=2
 # cd ../..
 # tar cJf gst-devtools-%{version}-vendor.tar.xz gst-devtools-%{version}/dots-viewer/vendor
 Source1:	gst-devtools-%{version}-vendor.tar.xz
-# Source1-md5:	07238aa1f4f12c4a64afb479ee485eb5
+# Source1-md5:	5f9a1e5d7a4777b18142d9e44828b9d5
 URL:		https://gstreamer.freedesktop.org/
 BuildRequires:	cairo-devel
 BuildRequires:	gettext-tools >= 0.17
