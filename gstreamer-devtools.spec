@@ -25,7 +25,7 @@ Source1:	gst-devtools-%{version}-vendor.tar.xz
 # Source1-md5:	07238aa1f4f12c4a64afb479ee485eb5
 URL:		https://gstreamer.freedesktop.org/
 BuildRequires:	cairo-devel
-BuildRequires:	gettext-devel >= 0.17
+BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	glib2-devel >= 1:2.64.0
 BuildRequires:	gobject-introspection-devel >= 0.6.3
 BuildRequires:	gstreamer-devel >= %{gst_ver}
