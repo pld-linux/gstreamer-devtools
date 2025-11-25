@@ -274,7 +274,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/48x48/apps/gst-debug-viewer.png
 %{_iconsdir}/hicolor/scalable/apps/gst-debug-viewer.svg
 
+%if %{with rust}
 %files -n gstreamer-dots-viewer
 %defattr(644,root,root,755)
 %doc dots-viewer/README.md
 %attr(755,root,root) %{_bindir}/gst-dots-viewer
+%endif
